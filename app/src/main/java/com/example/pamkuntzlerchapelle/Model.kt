@@ -1,7 +1,9 @@
 package com.example.pamkuntzlerchapelle
 import retrofit2.Call
 import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Result(val data: Drinks)
 data class Drinks(
         val idDrink: String? = null,
