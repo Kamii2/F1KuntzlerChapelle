@@ -1,17 +1,13 @@
 package com.example.pamkuntzlerchapelle
 
-import android.content.Intent
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
+import io.ktor.client.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,10 +20,17 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Acceuil : Fragment() {
-
+//https://www.androidauthority.com/use-web-api-android-1152645/
+//https://www.thecocktaildb.com/api.php
+//https://stackoverflow.com/questions/45219379/how-to-make-an-api-request-in-kotlin/45219917
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    }
+
+        val client = HttpClient()
+        val response: HttpResponse = client.request("www.thecocktaildb.com/api/json/v1/1/random.php") {
+            method = HttpMethod.Get
+        }
+        }
 
     companion object {
         /**

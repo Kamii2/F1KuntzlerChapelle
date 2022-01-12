@@ -42,6 +42,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'androidx.fragment:fragment-ktx:1.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //API Implementation
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.8.1'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+    implementation "io.ktor:ktor-client-core:1.6.7"
+    implementation "io.ktor:ktor-client-cio:1.6.7"
+    implementation "kotlinx.coroutines.guide.exampleBasic01"
+
+    //JSON
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     // Kotlin
     def nav_version = "2.3.5"
 
