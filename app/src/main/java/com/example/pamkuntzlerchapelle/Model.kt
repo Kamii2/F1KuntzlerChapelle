@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Result(val data: Drinks)
+@Serializable
 data class Drinks(
         val idDrink: String? = null,
         val strDrink: String? = null,

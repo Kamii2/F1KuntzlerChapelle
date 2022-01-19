@@ -1,10 +1,9 @@
 package com.example.pamkuntzlerchapelle.Liste
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import androidx.annotation.Keep
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pamkuntzlerchapelle.R
@@ -15,16 +14,14 @@ import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
-import io.ktor.client.statement.*
-import io.ktor.http.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
-import kotlinx.serialization.json.*
 
-@Keep
 @Serializable
-data class Result(val data: Drinks)
+data class Result(val drinks: List<Drinks>)
+
+@Serializable
 data class Drinks(
     val idDrink: String? = null,
     val strDrink: String? = null,
@@ -82,31 +79,40 @@ data class Drinks(
 )
 
 class MaListeFragment : Fragment(R.layout.fragment_liste) {
-    fun api() = runBlocking { // this: CoroutineScope
+    fun api(listTxT: MutableList<String>, listURL: MutableList<String>) = runBlocking {
+        // this: CoroutineScope
         launch { // launch a new coroutine and continue
-            val client = HttpClient(CIO){
-                install(JsonFeature){
-                    serializer = KotlinxSerializer(kotlinx.serialization.json.Json { prettyPrint = true
-                        isLenient = true  })
+            val client = HttpClient(CIO) {
+                install(JsonFeature) {
+                    serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
+                        prettyPrint = true
+                        isLenient = true; ignoreUnknownKeys = true
+                    })
                 }
             }
-            val response: HttpResponse = client.request("http://www.thecocktaildb.com/api/json/v1/1/random.php"){
-                contentType(ContentType.Application.Json)
-                body = Result(Drinks(null))
-            }
-            Log.d("Json",response.readText())
+            val response: Result =
+                client.get("http://www.thecocktaildb.com/api/json/v1/1/random.php") {
+                }
+            response.drinks[0].strDrink?.let { listTxT.add(it) }
+            response.drinks[0].strDrinkThumb?.let { listURL.add(it) }
             client.close()
         }
-
-
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        api()
-        val initial = listOf("PinaColada", "Margarita", "Jus", "Puré", "J AI","PLus", "IDEE","MERDE")
+        val listTxT = mutableListOf<String>()
+        val listURL = mutableListOf<String>()
+        var i = 0
+        while (i < 20) {
+            api(listTxT,listURL)
+            i += 1;
+        }
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = NameAdapter(initial)
-        Log.d("MaListe", "listSize ${initial.count()}")
+        recyclerView.adapter = NameAdapter(listTxT,listURL){
+            //action au click du tableau
+            findNavController().navigate(MaListeFragmentDirections.actionMaListeFragmentToAcceuil())
+        }
     }
 }

@@ -3,14 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/maListeFragment">
+    app:startDestination="@id/showDetail">
     <fragment
         android:id="@+id/acceuil"
         android:name="com.example.pamkuntzlerchapelle.Acceuil"
         android:label="fragment_acceuil"
         tools:layout="@layout/fragment_acceuil" />
     <fragment
-        android:id="@+id/maListeFragment"
+        android:id="@+id/showDetail"
         android:name="com.example.pamkuntzlerchapelle.Liste.MaListeFragment"
-        android:label="MaListeFragment" />
+        android:label="MaListeFragment" >
+        <action
+            android:id="@+id/action_maListeFragment_to_acceuil"
+            app:destination="@id/acceuil" />
+        <argument
+            android:name="Cocktail"
+            app:argType="string" />
+    </fragment>
 </navigation>

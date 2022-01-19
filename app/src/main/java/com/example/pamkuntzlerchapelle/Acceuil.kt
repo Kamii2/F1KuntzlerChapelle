@@ -25,6 +25,7 @@ class Acceuil : Fragment() {
 //https://stackoverflow.com/questions/45219379/how-to-make-an-api-request-in-kotlin/45219917
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         }
 
     companion object {
