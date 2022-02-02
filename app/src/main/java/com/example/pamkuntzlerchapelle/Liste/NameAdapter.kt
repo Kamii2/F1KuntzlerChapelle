@@ -1,5 +1,6 @@
 package com.example.pamkuntzlerchapelle.Liste
 
+import Cocktail
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,7 @@ import com.example.pamkuntzlerchapelle.R
 import com.squareup.picasso.Picasso
 
 class NameAdapter(
-    val nameList: MutableList<String>,
-    val htppList: MutableList<String>, val cocktailCallBack: OnCocktailListener) : RecyclerView.Adapter<Cellule>() {
+    val cocktailList: List<Cocktail>, val cocktailCallBack: OnCocktailListener) : RecyclerView.Adapter<Cellule>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Cellule {
 
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
@@ -20,10 +20,10 @@ class NameAdapter(
     }
 
     override fun onBindViewHolder(cellule: Cellule, position: Int) {
-        cellule.itemTextView.text = nameList[position]
-        Picasso.get().load(htppList[position]).into(cellule.itemImageView);
+        cellule.itemTextView.text = cocktailList[position].name
+        Picasso.get().load(cocktailList[position].URL).into(cellule.itemImageView);
         cellule.itemView.setOnClickListener{
-            cocktailCallBack.onCocktailClicked(nameList[position])
+            cocktailCallBack.onCocktailClicked(cocktailList[position].name)
         }
     }
 
@@ -32,7 +32,7 @@ class NameAdapter(
     }
 
     override fun getItemCount(): Int {
-        return nameList.count()
+        return cocktailList.count()
     }
 }
 class Cellule(view: View) : RecyclerView.ViewHolder(view) {
