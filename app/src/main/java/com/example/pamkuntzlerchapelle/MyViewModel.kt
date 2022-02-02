@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.pamkuntzlerchapelle.Liste.API
 import kotlinx.coroutines.launch
 
-data class Cocktail(var name: String, var URL: String)
+data class Cocktail(var name: String, var URL: String, var instruction:String)
 
 class MyViewModel : ViewModel() {
     val my_api = API()

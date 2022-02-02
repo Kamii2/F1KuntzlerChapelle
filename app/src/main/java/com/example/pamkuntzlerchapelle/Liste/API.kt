@@ -27,14 +27,15 @@ class API {
                 )
             }
         }
-        for (i in 1..50) {
+        for (i in 1..15) {
             var response: Result =
                 client.get("http://www.thecocktaildb.com/api/json/v1/1/random.php") {
                 }
             val name= response.drinks[0].strDrink
             val url = response.drinks[0].strDrinkThumb
-            if(name != null && url != null) {
-                cocktails.add(Cocktail(name, url))
+            val instruction = response.drinks[0].strInstructions
+            if(name != null && url != null && instruction != null) {
+                cocktails.add(Cocktail(name, url, instruction))
             }
         }
         client.close()

@@ -23,14 +23,13 @@ class NameAdapter(
         cellule.itemTextView.text = cocktailList[position].name
         Picasso.get().load(cocktailList[position].URL).into(cellule.itemImageView);
         cellule.itemView.setOnClickListener{
-            cocktailCallBack.onCocktailClicked(cocktailList[position].name)
+            cocktailCallBack.onCocktailClicked(cocktailList[position].name, cocktailList[position].URL,cocktailList[position].instruction)
         }
     }
 
     fun interface OnCocktailListener{
-        fun onCocktailClicked (cocktail : String)
+        fun onCocktailClicked (cocktail : String, url : String, instruction : String)
     }
-
     override fun getItemCount(): Int {
         return cocktailList.count()
     }

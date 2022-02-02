@@ -5,19 +5,31 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/showDetail">
     <fragment
-        android:id="@+id/acceuil"
-        android:name="com.example.pamkuntzlerchapelle.Acceuil"
-        android:label="fragment_acceuil"
-        tools:layout="@layout/fragment_acceuil" />
-    <fragment
         android:id="@+id/showDetail"
         android:name="com.example.pamkuntzlerchapelle.Liste.MaListeFragment"
         android:label="MaListeFragment" >
-        <action
-            android:id="@+id/action_maListeFragment_to_acceuil"
-            app:destination="@id/acceuil" />
         <argument
             android:name="Cocktail"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_showDetail_to_fragmentDetail"
+            app:destination="@id/fragmentDetail" >
+            <argument
+                android:name="Nom" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetail"
+        android:name="com.example.pamkuntzlerchapelle.Liste.FragmentDetail"
+        android:label="FragmentDetail" >
+        <argument
+            android:name="Nom"
+            app:argType="string" />
+        <argument
+            android:name="URL"
+            app:argType="string" />
+        <argument
+            android:name="Instruction"
             app:argType="string" />
     </fragment>
 </navigation>

@@ -23,7 +23,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
 
 
-class MaListeFragment : Fragment(R.layout.fragment_liste) {
+class MaListeFragment : Fragment(R.layout.fragment_liste){
     val mon_api = API()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,8 +31,8 @@ class MaListeFragment : Fragment(R.layout.fragment_liste) {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val model: MyViewModel by viewModels()
         model.getCocktails().observe(this, Observer<List<Cocktail>>{
-            recyclerView.adapter = NameAdapter(it){
-                findNavController().navigate(MaListeFragmentDirections.actionMaListeFragmentToAcceuil())
+            recyclerView.adapter = NameAdapter(it){ name,url,instruction ->
+                findNavController().navigate(MaListeFragmentDirections.actionShowDetailToFragmentDetail(name,url,instruction))
             }
         })
     }
