@@ -21,16 +21,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
         android:layout_weight="1"
         android:fontFamily="casual"
         android:text="PinaColada"
         android:textColor="#777474"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/button2"
         app:layout_constraintStart_toEndOf="@+id/imageRecette"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.371" />
 
     <Button
         android:id="@+id/button2"
