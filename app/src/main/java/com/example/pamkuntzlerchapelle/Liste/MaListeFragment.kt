@@ -12,33 +12,27 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pamkuntzlerchapelle.R
-import com.google.gson.annotations.SerializedName
 
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.request.*
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.*
-
-
+/*
+    Fragment pour l'affichage de la liste des cocktails.
+ */
 class MaListeFragment : Fragment(R.layout.fragment_liste){
-    val mon_api = API()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        /* Gestion et affichage de la liste de cocktails. */
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        var bouton1: Button = view.findViewById(R.id.button4)
-        bouton1.setOnClickListener { view ->
-            findNavController().navigate(MaListeFragmentDirections.actionShowDetailToMapsFragment())
-        }
         val model: MyViewModel by viewModels()
         model.getCocktails().observe(viewLifecycleOwner, Observer<List<Cocktail>>{
             recyclerView.adapter = NameAdapter(it){ name,url,instruction ->
                 findNavController().navigate(MaListeFragmentDirections.actionShowDetailToFragmentDetail(name,url,instruction))
             }
         })
+
+        /* Bouton pour l'affichage de la map Google */
+        var mapButton: Button = view.findViewById(R.id.findBarButton)
+        mapButton.setOnClickListener { view ->
+            findNavController().navigate(MaListeFragmentDirections.actionShowDetailToMapsFragment())
+        }
     }
 }

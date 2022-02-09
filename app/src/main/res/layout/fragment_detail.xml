@@ -29,13 +29,13 @@
         android:textColor="#777474"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="@+id/fakeButton"
         app:layout_constraintStart_toEndOf="@+id/imageRecette"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.371" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/fakeButton"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
         android:visibility="invisible"

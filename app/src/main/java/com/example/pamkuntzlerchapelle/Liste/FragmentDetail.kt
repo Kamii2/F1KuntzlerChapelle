@@ -13,6 +13,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.pamkuntzlerchapelle.R
 import com.squareup.picasso.Picasso
 
+/*
+    Fragment pour l'affichage du detail du cocktail.
+ */
 class FragmentDetail : Fragment(R.layout.fragment_detail) {
     val args: FragmentDetailArgs by navArgs()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

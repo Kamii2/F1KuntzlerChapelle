@@ -11,10 +11,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.*
 
+val nbCocktails = 15
+
 class API {
-    suspend fun apicall():List<Cocktail>
-    // this: CoroutineScope
-    { // launch a new coroutine and continu
+    /*
+        Fonction d'appel a la coroutine pour les appels API.
+     */
+    suspend fun apiCall():List<Cocktail>
+    {
         var cocktails = mutableListOf<Cocktail>()
         val client = HttpClient(CIO) {
             install(JsonFeature) {
@@ -27,13 +31,21 @@ class API {
                 )
             }
         }
-        for (i in 1..15) {
+
+        /*
+            On fait la requete 15 fois pour recuperer nos 15 cocktails.
+         */
+        for (i in 1..nbCocktails) {
             var response: Result =
                 client.get("http://www.thecocktaildb.com/api/json/v1/1/random.php") {
                 }
             val name= response.drinks[0].strDrink
             val url = response.drinks[0].strDrinkThumb
             val instruction = response.drinks[0].strInstructions
+
+            /*
+                Si le cocktail est pas vide (pas d'erreur dans le JSON) on l'ajoute a notre liste.
+             */
             if(name != null && url != null && instruction != null) {
                 cocktails.add(Cocktail(name, url, instruction))
             }

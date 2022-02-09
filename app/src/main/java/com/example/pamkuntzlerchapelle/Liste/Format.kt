@@ -6,9 +6,11 @@ import kotlinx.serialization.Serializable
 class Format {
 }
 
+/* Specification du format du JSON */
 @Serializable
 data class Result(val drinks: List<Drinks>)
 
+/* Specification du format de reception des Cocktails (Drinks) */
 @Serializable
 data class Drinks(
     val idDrink: String? = null,
