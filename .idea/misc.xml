@@ -6,10 +6,12 @@
         <entry key="app/src/main/res/drawable/my_border.xml" value="0.18229166666666666" />
         <entry key="app/src/main/res/layout/acceuil_layout.xml" value="0.11503623188405797" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/cell.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/cell.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_acceuil.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/fragment_liste.xml" value="0.1539855072463768" />
+        <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_liste.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.10648148148148148" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2415" />
       </map>
     </option>
   </component>

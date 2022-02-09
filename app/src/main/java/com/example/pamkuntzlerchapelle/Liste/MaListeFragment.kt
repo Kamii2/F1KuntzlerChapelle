@@ -4,6 +4,7 @@ import Cocktail
 import MyViewModel
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -29,8 +30,12 @@ class MaListeFragment : Fragment(R.layout.fragment_liste){
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        var bouton1: Button = view.findViewById(R.id.button4)
+        bouton1.setOnClickListener { view ->
+            findNavController().navigate(MaListeFragmentDirections.actionShowDetailToMapsFragment())
+        }
         val model: MyViewModel by viewModels()
-        model.getCocktails().observe(this, Observer<List<Cocktail>>{
+        model.getCocktails().observe(viewLifecycleOwner, Observer<List<Cocktail>>{
             recyclerView.adapter = NameAdapter(it){ name,url,instruction ->
                 findNavController().navigate(MaListeFragmentDirections.actionShowDetailToFragmentDetail(name,url,instruction))
             }
